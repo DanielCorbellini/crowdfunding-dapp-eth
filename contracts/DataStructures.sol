@@ -5,6 +5,8 @@ pragma solidity ^0.8.31;
 struct Request {
     string description;
     uint value;
-    address recipient;
+    address payable recipient;
     bool complete;
+    uint approvalCount;
+    mapping(address => bool) approvals;
 }
