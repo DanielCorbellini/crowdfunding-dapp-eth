@@ -1,0 +1,33 @@
+{
+    "name": "crowdfunding",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "hardhat": "hardhat",
+        "test": "hardhat test",
+        "node": "hardhat node",
+        "deploy:local": "hardhat run scripts/deploy.ts --network localhost"
+    },
+    "dependencies": {
+        "next": "^14.2.5",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "ethers": "^6.13.4",
+        "viem": "^2.21.0",
+        "semantic-ui-react": "^2.1.5",
+        "semantic-ui-css": "^2.5.0"
+    },
+    "devDependencies": {
+        "hardhat": "^2.22.10",
+        "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+        "typescript": "^5.5.4",
+        "ts-node": "^10.9.2",
+        "@types/node": "^20.14.10",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "dotenv": "^16.4.5"
+    }
+}
