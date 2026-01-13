@@ -4,6 +4,16 @@ This project demonstrates a basic Hardhat use case. It comes with a sample contr
 
 Try running some of the following tasks:
 
+Compile contracts
+
 ```shell
 npx hardhat compile
+```
+
+Run tests
+
+```shell
+npx hardhat test
+# or
+npm run test
 ```
