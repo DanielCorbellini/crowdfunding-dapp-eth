@@ -17,3 +17,9 @@ npx hardhat test
 # or
 npm run test
 ```
+
+Deploy contracts to Sepolia
+
+```shell
+npx hardhat ignition deploy ignition/modules/CampaignFactory.ts --network sepolia
+```
