@@ -1,7 +1,63 @@
+"use client";
+import { getCampaignFactoryWrite } from "@/app/_lib/contracts/factory/factory.write";
+import { useState } from "react";
+
 export default function NewCampaign() {
+  const [minContribution, setMinContribution] = useState<number | string>("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const factory = await getCampaignFactoryWrite();
+    await factory.createCampaign(minContribution);
+    setMinContribution("");
+  }
+
   return (
-    <div>
-      <h1>New Campaign</h1>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-xl bg-white/5 backdrop-blur-xl rounded-2xl shadow-lg p-8">
+        <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+          Create a campaign
+        </h1>
+
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Minimum contribution (wei)
+            </label>
+            <input
+              type="number"
+              placeholder="100"
+              min={1}
+              value={minContribution}
+              onChange={(e) => setMinContribution(Number(e.target.value))}
+              required
+              title="Minimum contribution (wei)"
+              className="w-full px-4 py-3 rounded-xl bg-black/30 text-white placeholder-gray-400
+                         focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Campos futuros (já no padrão) */}
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Campaign name
+            </label>
+            <input
+              className="w-full px-4 py-3 rounded-xl bg-black/30 text-white placeholder-gray-400
+                         focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div> */}
+
+          <button
+            type="submit"
+            className="w-full mt-6 bg-gradient-to-r from-blue-600 to-purple-600
+                       text-white font-bold py-3 rounded-xl
+                       hover:opacity-90 transition-opacity cursor-pointer"
+          >
+            Create campaign
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

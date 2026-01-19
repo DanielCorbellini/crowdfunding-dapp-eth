@@ -8,13 +8,13 @@ import campaignFactory from "@/../artifacts/contracts/CampaignFactory.sol/Campai
 import { ethers } from "ethers";
 import { getWalletProvider } from "../../providers/walletProvider";
 
-export async function getFactory() {
+export async function getCampaignFactoryWrite() {
   const provider = await getWalletProvider();
   const signer = await provider.getSigner();
 
   return new ethers.Contract(
     process.env.NEXT_PUBLIC_FACTORY_ADDRESS!,
     campaignFactory.abi,
-    signer
+    signer,
   );
 }
