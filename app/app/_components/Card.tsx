@@ -1,4 +1,6 @@
+import Link from "next/link";
 import React from "react";
+import LinkButton from "./LinkButton";
 
 interface CardProps {
   address: string;
@@ -55,9 +57,9 @@ export default function Card({
             />
           </div>
           <div className="mt-4">
-            <button className="w-full rounded-xl bg-gray-100 py-2.5 text-sm font-bold text-gray-900 transition-transform hover:scale-[1.02] active:scale-[0.98]">
+            <LinkButton href={`/campaigns/${address}`} className="w-full">
               View Campaign
-            </button>
+            </LinkButton>
           </div>
         </div>
       </div>
