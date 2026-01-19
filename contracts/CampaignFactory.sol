@@ -7,6 +7,11 @@ import "./Campaign.sol";
 contract CampaignFactory {
     Campaign[] public deployedCampaigns;
 
+    /**
+     * @dev Emitted when a new campaign is created.
+     * @param campaign The address of the new campaign.
+     * @param creator The address of the campaign creator.
+     */
     event CampaignCreated(address indexed campaign, address indexed creator);
 
     function createCampaign(uint minimumContribution) public {

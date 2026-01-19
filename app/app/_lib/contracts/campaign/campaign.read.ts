@@ -5,6 +5,7 @@ import { getReadProvider } from "../../providers/readProvider";
 const provider = getReadProvider();
 
 /**
+ * Returns a pre-configured instance of the Campaign contract to read data
  * @param address Campaign address
  * @returns Campaign instance
  */
@@ -13,6 +14,7 @@ export function getCampaignRead(address: string) {
 }
 
 /**
+ * Returns the balance of a campaign
  * @param address Campaign address
  * @returns Campaign balance
  */
