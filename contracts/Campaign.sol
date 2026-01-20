@@ -8,6 +8,7 @@ contract Campaign {
     address public manager;
     uint public minimumContribution;
     uint public goal;
+    uint public totalContributed;
     mapping(address => bool) public approvers;
     Request[] public requests;
     uint public approversCount;
@@ -33,8 +34,11 @@ contract Campaign {
             "Minimum contribution not met"
         );
 
-        approvers[msg.sender] = true;
-        approversCount++;
+        totalContributed += msg.value;
+        if (!approvers[msg.sender]) {
+            approversCount++;
+            approvers[msg.sender] = true;
+        }
     }
 
     function createRequest(
@@ -81,14 +85,16 @@ contract Campaign {
     function getSummary()
         public
         view
-        returns (uint, uint, uint, uint, address)
+        returns (uint, uint, uint, uint, address, uint, uint)
     {
         return (
             minimumContribution,
             address(this).balance,
             requests.length,
             approversCount,
-            manager
+            manager,
+            goal,
+            totalContributed
         );
     }
 
