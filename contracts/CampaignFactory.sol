@@ -14,8 +14,12 @@ contract CampaignFactory {
      */
     event CampaignCreated(address indexed campaign, address indexed creator);
 
-    function createCampaign(uint minimumContribution) public {
-        Campaign newCampaign = new Campaign(minimumContribution, msg.sender);
+    function createCampaign(uint minimumContribution, uint goalAmount) public {
+        Campaign newCampaign = new Campaign(
+            minimumContribution,
+            msg.sender,
+            goalAmount
+        );
         deployedCampaigns.push(newCampaign);
 
         emit CampaignCreated(address(newCampaign), msg.sender);

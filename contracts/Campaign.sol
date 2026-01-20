@@ -7,6 +7,7 @@ import "./DataStructures.sol";
 contract Campaign {
     address public manager;
     uint public minimumContribution;
+    uint public goal;
     mapping(address => bool) public approvers;
     Request[] public requests;
     uint public approversCount;
@@ -17,9 +18,13 @@ contract Campaign {
         _;
     }
 
-    constructor(uint minimum, address managerAddress) {
+    constructor(uint minimum, address managerAddress, uint goalAmount) {
+        require(minimum > 0, "Minimum contribution must be greater than 0");
+        require(goalAmount > 0, "Goal must be greater than 0");
+
         manager = managerAddress;
         minimumContribution = minimum;
+        goal = goalAmount;
     }
 
     function contribute() public payable {
@@ -71,5 +76,23 @@ contract Campaign {
         require(success, "Transfer failed");
 
         request.complete = true;
+    }
+
+    function getSummary()
+        public
+        view
+        returns (uint, uint, uint, uint, address)
+    {
+        return (
+            minimumContribution,
+            address(this).balance,
+            requests.length,
+            approversCount,
+            manager
+        );
+    }
+
+    function gerRequestsCount() public view returns (uint) {
+        return requests.length;
     }
 }
