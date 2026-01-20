@@ -23,3 +23,15 @@ export async function getCampaignBalance(address: string) {
 
   return ethers.formatEther(balance);
 }
+
+/**
+ * Returns the goal of a campaign
+ * @param address Campaign address
+ * @returns Campaign goal
+ */
+export async function getCampaignGoal(address: string) {
+  const campaign = getCampaignRead(address);
+  const goal = await campaign.goal();
+
+  return ethers.formatEther(goal);
+}

@@ -9,6 +9,7 @@ import { useState } from "react";
 export default function NewCampaign() {
   const router = useRouter();
   const [minContribution, setMinContribution] = useState<number | string>("");
+  const [goal, setGoal] = useState<number | string>("");
   const [message, setMessage] = useState<{
     text: string;
     successfully: boolean;
@@ -21,6 +22,7 @@ export default function NewCampaign() {
     try {
       const campaignAddress = await createCampaignAndGetAddress(
         Number(minContribution),
+        Number(goal),
       );
 
       router.push("/campaigns/" + campaignAddress);
@@ -72,13 +74,31 @@ export default function NewCampaign() {
                 className="w-full px-4 py-3 rounded-xl bg-black/30 text-white placeholder-gray-400
                          focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
-              {message && (
-                <MessageCard
-                  message={message.text}
-                  successfully={message.successfully}
-                />
-              )}
             </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Goal (Ether)
+              </label>
+              <input
+                type="number"
+                placeholder="100"
+                min={1}
+                value={goal}
+                onChange={(e) => setGoal(Number(e.target.value))}
+                required
+                title="Goal (Ether)"
+                className="w-full px-4 py-3 rounded-xl bg-black/30 text-white placeholder-gray-400
+              focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            {message && (
+              <MessageCard
+                message={message.text}
+                successfully={message.successfully}
+              />
+            )}
 
             {/* Campos futuros (já no padrão) */}
             {/* <div>

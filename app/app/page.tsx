@@ -1,7 +1,10 @@
 import Card from "./_components/Card";
 import CardGroup from "./_components/CardGroup";
 import LinkButton from "./_components/LinkButton";
-import { getCampaignBalance } from "./_lib/contracts/campaign/campaign.read";
+import {
+  getCampaignBalance,
+  getCampaignGoal,
+} from "./_lib/contracts/campaign/campaign.read";
 import { getCampaignFactoryRead } from "./_lib/contracts/factory/factory.read";
 
 export default async function Home() {
@@ -42,6 +45,7 @@ export default async function Home() {
               key={campaignAddress}
               address={campaignAddress}
               currentAmount={await getCampaignBalance(campaignAddress)}
+              goal={await getCampaignGoal(campaignAddress)}
             />
           ))}
         </CardGroup>

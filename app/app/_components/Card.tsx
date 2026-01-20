@@ -8,6 +8,7 @@ interface CardProps {
   description?: string;
   currentAmount?: string;
   targetAmount?: string;
+  goal?: string;
 }
 
 export default function Card({
@@ -15,9 +16,9 @@ export default function Card({
   title = "Amazing Campaign", // Placeholder
   description = "This project aims to revolutionize the way we think about blockchain crowdfunding. Support us to make a difference.", // Placeholder
   currentAmount = "1.2", // Placeholder ETH
-  targetAmount = "5.0", // Placeholder ETH
+  goal = "5.0", // Placeholder ETH
 }: CardProps) {
-  const progress = (parseFloat(currentAmount) / parseFloat(targetAmount)) * 100;
+  const progress = (parseFloat(currentAmount) / parseFloat(goal)) * 100;
 
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white/5 p-6 shadow-xl backdrop-blur-lg transition-all hover:-translate-y-1 hover:shadow-2xl hover:bg-white/10 border border-white/10">
@@ -48,7 +49,7 @@ export default function Card({
         <div className="mt-auto">
           <div className="flex justify-between text-sm font-medium mb-2">
             <span className="text-gray-200">{currentAmount} ETH</span>
-            <span className="text-gray-400">of {targetAmount} ETH</span>
+            <span className="text-gray-400">of {goal} ETH</span>
           </div>
           <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden">
             <div

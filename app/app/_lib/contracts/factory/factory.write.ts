@@ -25,9 +25,13 @@ export async function getCampaignFactoryWrite() {
  * @param minContribution
  * @returns Campaign address
  */
-export async function createCampaignAndGetAddress(minContribution: number) {
+export async function createCampaignAndGetAddress(
+  minContribution: number,
+  goal: number,
+) {
   const factory = await getCampaignFactoryWrite();
-  const tx = await factory.createCampaign(minContribution);
+  const goalWei = ethers.parseEther(goal.toString());
+  const tx = await factory.createCampaign(minContribution, goalWei);
   const receipt = await tx.wait();
 
   // Search the event in the recepit
