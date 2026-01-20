@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import MessageCard from "@/app/_components/MessageCard";
@@ -14,7 +16,7 @@ export default function NewCampaign() {
     text: string;
     successfully: boolean;
   } | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -50,7 +52,7 @@ export default function NewCampaign() {
 
   return (
     <div className="h-[85vh] flex items-center justify-center px-4 overflow-hidden">
-      {loading ? (
+      {isLoading ? (
         <Spinner message="Processing transaction..." />
       ) : (
         <div className="w-full max-w-xl bg-white/5 backdrop-blur-xl rounded-2xl shadow-lg p-8">
@@ -61,16 +63,16 @@ export default function NewCampaign() {
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
-                Minimum contribution (wei)
+                Minimum contribution (Wei)
               </label>
               <input
                 type="number"
-                placeholder="100"
+                placeholder="Ex: 100000000000000000"
                 min={1}
                 value={minContribution}
                 onChange={(e) => setMinContribution(Number(e.target.value))}
                 required
-                title="Minimum contribution (wei)"
+                title="The minimum amount of WEI required to become an approver"
                 className="w-full px-4 py-3 rounded-xl bg-black/30 text-white placeholder-gray-400
                          focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
@@ -78,16 +80,17 @@ export default function NewCampaign() {
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
-                Goal (Ether)
+                Goal (Eth)
               </label>
               <input
                 type="number"
-                placeholder="100"
-                min={1}
+                placeholder="Ex: 1"
+                min={0.000001}
+                step="any"
                 value={goal}
                 onChange={(e) => setGoal(Number(e.target.value))}
                 required
-                title="Goal (Ether)"
+                title="The amount of money the campaign aims to raise (Ether)"
                 className="w-full px-4 py-3 rounded-xl bg-black/30 text-white placeholder-gray-400
               focus:outline-none focus:ring-2 focus:ring-purple-500"
               />

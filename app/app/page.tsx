@@ -1,4 +1,4 @@
-import Card from "./_components/Card";
+import CampaignCard from "./_components/CampaignCard";
 import CardGroup from "./_components/CardGroup";
 import LinkButton from "./_components/LinkButton";
 import {
@@ -41,7 +41,7 @@ export default async function Home() {
 
         <CardGroup>
           {campaigns.map(async (campaignAddress: string) => (
-            <Card
+            <CampaignCard
               key={campaignAddress}
               address={campaignAddress}
               currentAmount={await getCampaignBalance(campaignAddress)}

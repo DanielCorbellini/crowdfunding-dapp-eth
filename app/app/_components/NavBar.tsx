@@ -35,7 +35,7 @@ export default function NavBar() {
         <div className="p-4">
           <Link
             href="/campaigns/create"
-            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:opacity-90 transition-opacity"
+            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-3 px-4 rounded-xl hover:opacity-80 transition-opacity"
           >
             <span>+ New Campaign</span>
           </Link>

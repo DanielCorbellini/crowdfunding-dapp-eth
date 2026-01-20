@@ -1,8 +1,6 @@
-import Link from "next/link";
-import React from "react";
 import LinkButton from "./LinkButton";
 
-interface CardProps {
+interface CampaignCardProps {
   address: string;
   title?: string;
   description?: string;
@@ -11,18 +9,17 @@ interface CardProps {
   goal?: string;
 }
 
-export default function Card({
+export default function CampaignCard({
   address,
   title = "Amazing Campaign", // Placeholder
   description = "This project aims to revolutionize the way we think about blockchain crowdfunding. Support us to make a difference.", // Placeholder
   currentAmount = "1.2", // Placeholder ETH
   goal = "5.0", // Placeholder ETH
-}: CardProps) {
+}: CampaignCardProps) {
   const progress = (parseFloat(currentAmount) / parseFloat(goal)) * 100;
 
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-white/5 p-6 shadow-xl backdrop-blur-lg transition-all hover:-translate-y-1 hover:shadow-2xl hover:bg-white/10 border border-white/10">
-      {/* Gradient Blob for premium feel */}
       <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-purple-500/30 blur-2xl transition-all group-hover:bg-purple-500/50" />
       <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-blue-500/30 blur-2xl transition-all group-hover:bg-blue-500/50" />
 

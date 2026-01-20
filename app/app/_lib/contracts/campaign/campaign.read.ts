@@ -35,3 +35,23 @@ export async function getCampaignGoal(address: string) {
 
   return ethers.formatEther(goal);
 }
+
+/**
+ * Returns the summary (variables of the contract) of a campaign
+ * @param address Campaign address
+ * @returns Campaign summary
+ */
+export async function getCampaignSummary(address: string) {
+  const campaign = getCampaignRead(address);
+  const summary = await campaign.getSummary();
+
+  return {
+    minimumContribution: summary[0],
+    balance: ethers.formatEther(summary[1]),
+    requestsCount: summary[2],
+    approversCount: summary[3],
+    manager: summary[4],
+    goal: ethers.formatEther(summary[5]),
+    totalContributed: ethers.formatEther(summary[6]),
+  };
+}
