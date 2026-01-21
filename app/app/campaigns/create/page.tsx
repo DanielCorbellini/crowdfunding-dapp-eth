@@ -63,7 +63,8 @@ export default function NewCampaign() {
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
-                Minimum contribution (Wei)
+                Minimum contribution (Wei){" "}
+                <span className="text-red-500">*</span>
               </label>
               <input
                 type="number"
@@ -80,7 +81,7 @@ export default function NewCampaign() {
 
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
-                Goal (Eth)
+                Goal (Eth) <span className="text-red-500">*</span>
               </label>
               <input
                 type="number"

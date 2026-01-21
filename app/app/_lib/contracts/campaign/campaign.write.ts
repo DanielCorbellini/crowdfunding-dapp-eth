@@ -32,3 +32,18 @@ export async function contributeToCampaign(
 
   return receipt;
 }
+
+export async function createRequest(
+  description: string,
+  value: string,
+  recipient: string,
+  campaignAddress: string,
+) {
+  const campaign = await getCampaignWrite(campaignAddress);
+  const valueWei = ethers.parseEther(value);
+
+  const tx = await campaign.createRequest(description, valueWei, recipient);
+  const receipt = await tx.wait();
+
+  return receipt;
+}

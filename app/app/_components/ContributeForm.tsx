@@ -63,7 +63,9 @@ export default function ContributeForm({
     <Spinner message="Processing transaction..." />
   ) : (
     <form onSubmit={handleSubmit}>
-      <label>Amount to contribute (Eth)</label>
+      <label>
+        Amount to contribute (Eth) <span className="text-red-500">*</span>
+      </label>
       <input
         className="w-full p-2 mt-2 border border-white/10 rounded-2xl bg-black/30 focus:outline-none focus:ring-2 focus:ring-purple-500"
         type="number"
