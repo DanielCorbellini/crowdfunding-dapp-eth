@@ -2,5 +2,6 @@
   "CampaignFactory#CampaignFactory": "0x6EC0eC8A78565911347e8f459AFD4b2eD4dDf24D",
   "CampaignFactoryV2#CampaignFactory": "0xC34E949b66db645FE606731d33695AbC0f87788C",
   "CampaignFactoryV3#CampaignFactory": "0x09BD113f2578E243b5079f6Bb23d5b1e6DE6d2C1",
-  "CampaignFactoryV4#CampaignFactory": "0x73d838c19198f743bDa13393186cdC2Ef9e6a86d"
+  "CampaignFactoryV4#CampaignFactory": "0x73d838c19198f743bDa13393186cdC2Ef9e6a86d",
+  "CampaignFactoryV5#CampaignFactory": "0xE43b05337828C46D48DEe803F75c92071C6f6AfD"
 }

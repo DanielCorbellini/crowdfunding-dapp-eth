@@ -98,7 +98,7 @@ contract Campaign {
         );
     }
 
-    function gerRequestsCount() public view returns (uint) {
+    function getRequestsCount() public view returns (uint) {
         return requests.length;
     }
 }
