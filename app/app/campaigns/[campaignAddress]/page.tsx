@@ -21,7 +21,7 @@ export default async function Campaigns({ params }: PageProps) {
 
   return (
     <div className="space-y-6">
-      <div className="mb-8 p-6 rounded-2xl bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10">
+      <div className="mb-8 mt-8 p-6 rounded-2xl bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10">
         <h2 className="text-2xl font-bold text-white mb-2">
           Campaign Dashboard
         </h2>

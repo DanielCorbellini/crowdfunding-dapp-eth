@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { contributeToCampaign } from "../_lib/contracts/campaign/campaign.write";
 import Button from "./Button";
@@ -20,6 +21,7 @@ export default function ContributeForm({
     successfully: boolean;
   } | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     try {
@@ -31,6 +33,7 @@ export default function ContributeForm({
         text: "Contribution successful!",
         successfully: true,
       });
+      router.refresh();
     } catch (err: any) {
       console.error(err);
       if (err.code === "ACTION_REJECTED") {
@@ -78,7 +81,9 @@ export default function ContributeForm({
           successfully={message.successfully}
         />
       )}
-      <Button type="submit">Contribute</Button>
+      <Button className="w-full mt-5" type="submit">
+        Contribute
+      </Button>
     </form>
   );
 }

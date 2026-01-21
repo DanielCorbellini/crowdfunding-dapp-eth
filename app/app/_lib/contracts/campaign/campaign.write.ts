@@ -10,7 +10,7 @@ const provider = await getWalletProvider();
  * Pre-configured instance of the Campaign contract to sign transactions
  */
 export async function getCampaignWrite(address: string) {
-  const signer = await provider.getSigner();
+  const signer = await provider?.getSigner();
 
   return new ethers.Contract(address, campaign.abi, signer);
 }
