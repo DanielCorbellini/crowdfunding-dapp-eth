@@ -55,3 +55,31 @@ export async function getCampaignSummary(address: string) {
     totalContributed: ethers.formatEther(summary[6]),
   };
 }
+
+/**
+ * Returns all requests of a campaign
+ * (Not ideal, but solidity cannot return an array of struct with a mapping on it)
+ * @param address Campaign address
+ * @returns Campaign requests
+ */
+export async function getAllCampaignRequests(address: string) {
+  const campaign = getCampaignRead(address);
+  const requestsCount = await campaign.getRequestsCount();
+
+  const requests = await Promise.all(
+    Array.from({ length: Number(requestsCount) }, async (_, index) => {
+      const request = await campaign.requests(index);
+
+      return {
+        id: index,
+        description: request.description,
+        value: ethers.formatEther(request.value),
+        recipient: request.recipient,
+        complete: request.complete,
+        approvalCount: Number(request.approvalCount),
+      };
+    }),
+  );
+
+  return { requests, requestsCount: Number(requestsCount) };
+}
