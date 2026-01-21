@@ -11,7 +11,7 @@ export default function CampaignsLayout({
   const router = useRouter();
   return (
     <div>
-      <div className="">
+      <div className="mb-8">
         <Button className="p-5" onClick={() => router.back()}>
           ⬅️ Go back
         </Button>
