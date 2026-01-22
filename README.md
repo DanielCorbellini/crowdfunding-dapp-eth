@@ -14,7 +14,7 @@ A decentralized crowdfunding platform built on the Ethereum blockchain. This app
 - **Blockchain**: Solidity, Ethereum
 - **Development Framework**: Hardhat
 - **Frontend**: Next.js (React)
-- **Styling**: Semantic UI
+- **Styling**: Tailwind CSS
 - **Interaction**: Ethers.js
 
 ## 📦 Installation & Setup
