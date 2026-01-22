@@ -63,6 +63,7 @@ contract Campaign {
             !request.approvals[msg.sender],
             "You have already approved this request"
         );
+        require(!request.complete, "Request already completed");
 
         request.approvals[msg.sender] = true;
         request.approvalCount++;
@@ -75,6 +76,7 @@ contract Campaign {
             request.approvalCount > approversCount / 2,
             "Not enough approvals"
         );
+        require(address(this).balance > request.value, "Not enough funds");
 
         (bool success, ) = request.recipient.call{value: request.value}("");
         require(success, "Transfer failed");
