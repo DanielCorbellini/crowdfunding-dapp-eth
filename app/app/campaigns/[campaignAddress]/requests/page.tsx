@@ -20,7 +20,14 @@ export default async function CampaignRequests({ params }: PageProps) {
     <div>
       <h3 className="text-2xl font-bold text-white mb-5">Campaign Requests</h3>
       <p className="text-white">Total requests: {requestsCount}</p>
-
+      <div className="flex justify-end">
+        <LinkButton
+          href={`/campaigns/${campaignAddress}/requests/create`}
+          className="p-6 mt-4"
+        >
+          Add Request
+        </LinkButton>
+      </div>
       <div className="w-full overflow-x-auto bg-white/5 backdrop-blur-xl rounded-2xl shadow-lg border border-white/10 mb-8 mt-8">
         <table className="w-full border-collapse bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-white/10">
           <thead>
@@ -71,6 +78,7 @@ export default async function CampaignRequests({ params }: PageProps) {
                   <ApproveRequestButton
                     index={request.id}
                     campaignAddress={campaignAddress}
+                    disabled={request.complete}
                   />
                 </td>
 
@@ -78,6 +86,13 @@ export default async function CampaignRequests({ params }: PageProps) {
                   <FinalizeRequestButton
                     index={request.id}
                     campaignAddress={campaignAddress}
+                    disabled={
+                      request.complete ||
+                      !(
+                        request.approvalCount >
+                        Number(request.approversCount) / 2
+                      )
+                    }
                   />
                 </td>
               </tr>
@@ -92,12 +107,6 @@ export default async function CampaignRequests({ params }: PageProps) {
           </tbody>
         </table>
       </div>
-      <LinkButton
-        href={`/campaigns/${campaignAddress}/requests/create`}
-        className="p-6"
-      >
-        Add Request
-      </LinkButton>
     </div>
   );
 }

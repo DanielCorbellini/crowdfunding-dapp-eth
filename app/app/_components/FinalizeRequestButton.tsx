@@ -10,9 +10,11 @@ import { toast } from "sonner";
 export default function FinalizeRequestButton({
   index,
   campaignAddress,
+  disabled,
 }: {
   index: number;
   campaignAddress: string;
+  disabled?: boolean;
 }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +26,7 @@ export default function FinalizeRequestButton({
       toast.success("Request finalized successfully!");
       router.refresh();
     } catch (err) {
+      console.log(err);
       toast.error(`Error: ${err.reason}`);
     } finally {
       setIsLoading(false);
@@ -36,6 +39,7 @@ export default function FinalizeRequestButton({
     <Button
       onClick={handleFinalizeRequest}
       className="p-6 !bg-yellow-500/10 !border !border-yellow-500 !bg-gradient-to-r !from-yellow-500 !to-yellow-600"
+      disabled={disabled}
     >
       Finalize
     </Button>

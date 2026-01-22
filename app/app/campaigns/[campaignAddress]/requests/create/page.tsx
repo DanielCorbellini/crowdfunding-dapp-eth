@@ -8,6 +8,7 @@ import { createRequest } from "@/app/_lib/contracts/campaign/campaign.write";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { getCampaignBalance } from "@/app/_lib/contracts/campaign/campaign.read";
+import { toast } from "sonner";
 
 export default function CreateRequestPage() {
   const params = useParams();
@@ -43,6 +44,7 @@ export default function CreateRequestPage() {
         campaignAddress as string,
       );
 
+      toast.success("Request created successfully.");
       setMessage({
         text: "Request created successfully.",
         successfully: true,

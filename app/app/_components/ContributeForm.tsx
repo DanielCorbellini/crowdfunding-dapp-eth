@@ -7,6 +7,7 @@ import { contributeToCampaign } from "../_lib/contracts/campaign/campaign.write"
 import Button from "./Button";
 import MessageCard from "./MessageCard";
 import Spinner from "./Spinner";
+import { toast } from "sonner";
 
 export default function ContributeForm({
   campaignAddress,
@@ -33,10 +34,12 @@ export default function ContributeForm({
         text: "Contribution successful!",
         successfully: true,
       });
+      toast.success("Contribution successful!");
       router.refresh();
     } catch (err: any) {
       console.error(err);
       if (err.code === "ACTION_REJECTED") {
+        toast.error("Transaction rejected by user.");
         return setMessage({
           text: "Transaction rejected by user.",
           successfully: false,
@@ -44,6 +47,7 @@ export default function ContributeForm({
       }
 
       if (err.reason) {
+        toast.error(err.reason);
         return setMessage({
           text: err.reason,
           successfully: false,

@@ -10,9 +10,11 @@ import Spinner from "./Spinner";
 export default function ApproveRequestButton({
   index,
   campaignAddress,
+  disabled,
 }: {
   index: number;
   campaignAddress: string;
+  disabled?: boolean;
 }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +39,7 @@ export default function ApproveRequestButton({
     <Button
       onClick={handleApproveRequest}
       className="p-6 !bg-green-500/10 !border !border-green-500 !bg-gradient-to-r !from-green-500 !to-green-600"
+      disabled={disabled}
     >
       Approve
     </Button>

@@ -27,7 +27,7 @@ describe("Campaign contracts", function () {
     campaign = await hre.ethers.getContractAt(
       "Campaign",
       campaignAddress,
-      deployer
+      deployer,
     );
   });
 
@@ -75,7 +75,7 @@ describe("Campaign contracts", function () {
       await campaign.createRequest(
         "Buy GPUs",
         hre.ethers.parseEther("5"),
-        users[1].address
+        users[1].address,
       );
 
       await campaign.connect(users[0]).approveRequest(0);
