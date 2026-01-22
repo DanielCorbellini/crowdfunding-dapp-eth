@@ -33,6 +33,15 @@ export async function contributeToCampaign(
   return receipt;
 }
 
+/**
+ * Creates a request to withdraw funds from the campaign
+ *
+ * @param description Request description
+ * @param value Request value in ETH
+ * @param recipient Recipient address
+ * @param campaignAddress Campaign address
+ * @returns Transaction receipt
+ */
 export async function createRequest(
   description: string,
   value: string,
@@ -43,6 +52,29 @@ export async function createRequest(
   const valueWei = ethers.parseEther(value);
 
   const tx = await campaign.createRequest(description, valueWei, recipient);
+  const receipt = await tx.wait();
+
+  return receipt;
+}
+
+/**
+ * Approves a request to withdraw funds from the campaign
+ *
+ * @param index Request index
+ * @param campaignAddress Campaign address
+ * @returns Transaction receipt
+ */
+export async function approveRequest(index: number, campaignAddress: string) {
+  const campaign = await getCampaignWrite(campaignAddress);
+  const tx = await campaign.approveRequest(index);
+  const receipt = await tx.wait();
+
+  return receipt;
+}
+
+export async function finalizeRequest(index: number, campaignAddress: string) {
+  const campaign = await getCampaignWrite(campaignAddress);
+  const tx = await campaign.finalizeRequest(index);
   const receipt = await tx.wait();
 
   return receipt;

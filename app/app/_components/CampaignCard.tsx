@@ -11,10 +11,10 @@ interface CampaignCardProps {
 
 export default function CampaignCard({
   address,
-  title = "Amazing Campaign", // Placeholder
-  description = "This project aims to revolutionize the way we think about blockchain crowdfunding. Support us to make a difference.", // Placeholder
-  currentAmount = "1.2", // Placeholder ETH
-  goal = "5.0", // Placeholder ETH
+  title = "Amazing Campaign",
+  description = "These kind of informations (title and description) are not stored onchain, instead they should be stored in a database and referenced by the campaign address",
+  currentAmount,
+  goal,
 }: CampaignCardProps) {
   const progress = (parseFloat(currentAmount) / parseFloat(goal)) * 100;
 

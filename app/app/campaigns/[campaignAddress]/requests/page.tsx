@@ -1,3 +1,5 @@
+import ApproveRequestButton from "@/app/_components/ApproveRequestButton";
+import FinalizeRequestButton from "@/app/_components/FinalizeRequestButton";
 import LinkButton from "@/app/_components/LinkButton";
 import { getAllCampaignRequests } from "@/app/_lib/contracts/campaign/campaign.read";
 
@@ -29,6 +31,8 @@ export default async function CampaignRequests({ params }: PageProps) {
               <th className="px-6 py-5 text-center">Recipient</th>
               <th className="px-6 py-5 text-center">Approvals</th>
               <th className="px-6 py-5 text-center">Status</th>
+              <th className="px-6 py-5 text-center">Approve</th>
+              <th className="px-6 py-5 text-center">Finalize</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
@@ -49,7 +53,7 @@ export default async function CampaignRequests({ params }: PageProps) {
                 </td>
                 <td className="px-6 py-4 text-center">
                   <span className="text-blue-400 font-bold">
-                    {request.approvalCount}
+                    {request.approvalCount} / {request.approversCount}
                   </span>
                 </td>
                 <td className="px-6 py-4 text-center">
@@ -62,6 +66,19 @@ export default async function CampaignRequests({ params }: PageProps) {
                       Pending
                     </span>
                   )}
+                </td>
+                <td className="px-6 py-4 text-center">
+                  <ApproveRequestButton
+                    index={request.id}
+                    campaignAddress={campaignAddress}
+                  />
+                </td>
+
+                <td className="px-6 py-4 text-center">
+                  <FinalizeRequestButton
+                    index={request.id}
+                    campaignAddress={campaignAddress}
+                  />
                 </td>
               </tr>
             ))}

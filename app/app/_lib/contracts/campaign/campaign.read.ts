@@ -65,6 +65,7 @@ export async function getCampaignSummary(address: string) {
 export async function getAllCampaignRequests(address: string) {
   const campaign = getCampaignRead(address);
   const requestsCount = await campaign.getRequestsCount();
+  const approversCount = await campaign.approversCount();
 
   const requests = await Promise.all(
     Array.from({ length: Number(requestsCount) }, async (_, index) => {
@@ -77,6 +78,7 @@ export async function getAllCampaignRequests(address: string) {
         recipient: request.recipient,
         complete: request.complete,
         approvalCount: Number(request.approvalCount),
+        approversCount,
       };
     }),
   );
